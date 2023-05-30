@@ -3,6 +3,43 @@ from sklearn.preprocessing import StandardScaler, OneHotEncoder
 from sklearn.impute import SimpleImputer
 from sklearn.decomposition import PCA
 
+'''
+Code Description:
+This code defines several functions that are used to preprocess and clean a 
+dataset. The idea behind this is to prepare the data for use as input in a 
+machine learning algorithm, such as training a model, by performing quality 
+checks, cleaning, scaling, encoding, and/or reducing its dimensionality.
+
+The load_data() function reads data from one or more CSV files and merges 
+them into a single pandas dataframe. It also drops any columns specified to 
+be dropped.
+
+The quality_assessment() function performs checks on the data, including 
+counting missing values per column, checking for duplicates, printing data 
+types, and describing data statistics.
+
+The clean_data() function performs data cleaning on the loaded dataset. This 
+includes removing duplicates, filling in any missing values with the mean, 
+removing outliers based on z-score, and scaling the numerical data features 
+using the Standard Scaler function.
+
+The transform_data() function one-hot encodes any categorical variables 
+present in the dataset (i.e. converts them into a numerical form), 
+and combines these with the original dataset.
+
+The reduce_data() function uses Principal Component Analysis (PCA) to 
+perform dimensionality reduction on the dataset, as specified by n_components.
+
+Finally, preprocess_data() combines all of these functions together, 
+depending on what data cleaning steps we need to do, and either returns the 
+original or transformed dataset, or both.
+
+Overall, this code sets up a framework for automating and standardizing the 
+preprocessing of a dataset, so that it can be easily used as input to a 
+machine learning algorithm.
+
+'''
+
 
 def load_data(file_paths, drop_cols=None):
     dfs = []
@@ -14,7 +51,8 @@ def load_data(file_paths, drop_cols=None):
             df = df.drop(columns=drop_cols)
         dfs.append(df)
 
-    # Merge dataframes into a single dataframe if multiple file paths are provided
+    # Merge dataframes into a single dataframe if multiple file paths are
+    # provided
     if len(dfs) > 1:
         df = pd.concat(dfs, axis=0, ignore_index=True)
     else:
@@ -111,4 +149,4 @@ def preprocess_data(file_path, drop_cols=None, quality_assessment_flag=True,
 
     return df
 
-#message
+# message
