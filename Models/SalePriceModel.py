@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 from sklearn.preprocessing import StandardScaler
 
 # Load the data
-dataframe = pd.read_csv('resources/stockx.csv')
+dataframe = pd.read_csv('../resources/stockx.csv')
 
 # Define the target variable
 target = 'num_sales'

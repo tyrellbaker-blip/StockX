@@ -3,7 +3,7 @@ import pandas as pd
 import seaborn as sns
 
 # Load the data
-dataframe = pd.read_csv('resources/stockx.csv')
+dataframe = pd.read_csv('../resources/stockx.csv')
 
 # Preprocess the data
 dataframe = dataframe.drop(['Shoe Size', 'Buyer Region'], axis=1)
