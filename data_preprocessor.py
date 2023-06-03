@@ -3,6 +3,57 @@ from sklearn.preprocessing import StandardScaler, OneHotEncoder
 from sklearn.impute import SimpleImputer
 from sklearn.decomposition import PCA
 
+"""
+The preprocess_data() function in data_processor.py is designed to 
+preprocess data before modeling. It takes the following arguments:
+
+file_path: Path to the CSV file containing the data.
+drop_cols: List of columns to drop from the dataset.
+quality_assessment_flag: Boolean value indicating whether to perform quality 
+assessment on the data (default is True).
+clean_data_flag: Boolean value indicating whether to clean the data (default 
+is True).
+transform_data_flag: Boolean value indicating whether to transform the data 
+(default is True).
+reduce_data_flag: Boolean value indicating whether to reduce the dimensions 
+of the data using PCA (default is False).
+n_components: Number of components to retain after reducing the dimensions 
+of the data (default is 2).
+Here's what each of the functions within preprocess_data() do:
+
+load_data(): Loads the data from one or more CSV files into a pandas 
+dataframe. If multiple CSV files are specified, the function concatenates 
+them into a single dataframe.
+
+quality_assessment(): Performs quality assessment on the data and prints the 
+following information:
+
+Number of missing values per column
+Number of duplicates
+Data types of the columns
+Basic statistics for the numerical columns
+This information can be used to identify and fix quality issues in the data.
+
+clean_data(): Cleans the data by:
+
+Dropping any duplicate rows.
+Imputing missing values with the mean of their respective columns.
+Removing outliers using the z-score method.
+Scaling the numerical features to have zero mean and unit variance.
+This helps to improve the quality of the data and makes it suitable for 
+processing by machine learning algorithms.
+
+transform_data(): Transforms the categorical variables in the data into 
+one-hot encoded numerical variables. This is necessary because many machine 
+learning algorithms cannot process categorical data directly.
+
+reduce_data(): Reduces the dimensions of the data using principal component 
+analysis (PCA). This can be useful for visualizing high-dimensional data or 
+reducing the computational load of machine learning algorithms.
+
+Overall, the preprocess_data() function provides a flexible and 
+comprehensive way to preprocess data before modeling.
+"""
 
 def load_data(file_paths, drop_cols=None):
     dfs = []
@@ -14,7 +65,8 @@ def load_data(file_paths, drop_cols=None):
             df = df.drop(columns=drop_cols)
         dfs.append(df)
 
-    # Merge dataframes into a single dataframe if multiple file paths are provided
+    # Merge dataframes into a single dataframe if multiple file paths are
+    # provided
     if len(dfs) > 1:
         df = pd.concat(dfs, axis=0, ignore_index=True)
     else:
@@ -110,5 +162,3 @@ def preprocess_data(file_path, drop_cols=None, quality_assessment_flag=True,
         df = reduce_data(df, n_components=n_components)
 
     return df
-
-#message
