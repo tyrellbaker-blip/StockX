@@ -53,13 +53,14 @@ def load_data(file_paths, drop_cols=None):
 
     # Merge dataframes into a single dataframe if multiple file paths are
     # provided
-    if len(dfs) > 1:
+    if len(df) > 1:
         df = pd.concat(dfs, axis=0, ignore_index=True)
     else:
         df = dfs[0]
 
     return df
 
+#TODO: Fix the load data function
 
 def quality_assessment(df):
     # Check for missing values

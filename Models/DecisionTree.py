@@ -86,17 +86,4 @@ accuracy = accuracy_score(y_test, y_pred)
 print(f"Accuracy: {accuracy}")
 
 #
-# TODO: Define the target variable for classification. In this case,
-#  the target variable is "popular".
 #
-# TODO: Split the data into input and target variables using the drop() method.
-
-# TODO: Split the data into training and testing sets using the
-#  train_test_split() function.
-#
-# TODO: 1. Create a DecisionTreeClassifier object.
-# TODO: 2. Fit the classifier to the training data using the fit() method.
-# TODO: 3. Make predictions on the test data  using the predict() method.
-# TODO: 4. Evaluate the performance of the model using the accuracy_score()
-#  function.
-# TODO: 5. Print the accuracy of the model.
