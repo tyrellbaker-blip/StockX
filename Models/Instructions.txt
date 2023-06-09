@@ -1,0 +1,6 @@
+This is where I'll put any instructions that go with the work we're doing in
+ Python.
+
+To change the csv view, open the csv file, and look for the eyeball in the
+upper right hand corner. It will give you a 'view as' option. Click how you
+want the data pictured.

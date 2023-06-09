@@ -4,32 +4,18 @@ from datetime import datetime
 
 
 def get_days_between_release_and_sale(csv_file):
-    with open(csv_file, 'r') as f:
+    with open(csv_file, 'r', encoding='utf-8-sig') as f:
         reader = csv.DictReader(f)
         results = {}
         for i, row in enumerate(reader):
             try:
                 release_date = datetime.strptime(row['Release Date'],
-                                                 '%m/%d/%Y')
-                sale_date = datetime.strptime(row['Order Date'], '%m/%d/%Y')
+                                                 '%m/%d/%y')
+                sale_date = datetime.strptime(row['Order Date'], '%m/%d/%y')
                 days_between = abs((sale_date - release_date).days)
                 results[i] = days_between
-            except ValueError:
-                print(
-                    f"Skipping row {i} due to missing or malformed data: {row}")
 
-        f.seek(0)  # Reset file pointer to beginning of file
-
-        # Create a new dictionary mapping sneaker names to days_between values
-        sneaker_days = {}
-        for row in reader:
-            sneaker_name = row['Sneaker Name']
-            days_between = results.get(reader.line_num - 2,
-                                       None)  # Subtract 2 because of header row and 0-indexing
-            if days_between is not None:
-                sneaker_days[sneaker_name] = days_between
-
-    return sneaker_days
+    return days_between
 
 
 # TODO: Build a function to calculate purchase date/ release date difference?
